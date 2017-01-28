@@ -19,9 +19,9 @@ function getLocation() {
 }
  
 function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    " Longitude: " + position.coords.longitude +
-    "<br>distance to reference: " + getDistance(position) + "km";
+    x.innerHTML = "latitude: " + position.coords.latitude +
+    " longitude: " + position.coords.longitude +
+    "<br><br>distance to reference: " + getDistance(position) + " km";
 }
  
 function getDistance(position) {
