@@ -1,0 +1,51 @@
+ 
+<!DOCTYPE html>
+<html>
+<body>
+ 
+<p>Click the button to get your coordinates.</p>
+ 
+<button onclick="getLocation()">Try It</button>
+ 
+<p id="demo"></p>
+ 
+<script>
+var x = document.getElementById("demo");
+ 
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+ 
+function showPosition(position) {
+    x.innerHTML = "Lat: " + position.coords.latitude +
+    " Long: " + position.coords.longitude +
+    "<br>distance to reference: " + getDistance(position) + "km";
+}
+ 
+function getDistance(position) {
+  var R = 6371; // Radius of the earth in km
+ 
+  //referencepoint
+  var lat=47.3613946;
+  var lon=8.5100724;
+  var dLat = deg2rad(lat-position.coords.latitude);
+  var dLon = deg2rad(lon-position.coords.longitude);
+  var a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(position.coords.latitude)) * Math.cos(deg2rad(lat)) * Math.sin(dLon/2) * Math.sin(dLon/2) ;
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c;
+  return d;
+}
+ 
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+ 
+</script>
+ 
+</body>
+</html>
