@@ -1,15 +1,18 @@
- 
+
 <!DOCTYPE html>
 <html>
 <body>
- 
-<button onclick="getLocation()">calculate distance to reference</button>
- 
 <p id="demo"></p>
  
 <script>
 var x = document.getElementById("demo");
- 
+var elem = document.getElementById("changeText");
+setInterval(change, 1000);
+
+function change() {   
+   navigator.geolocation.getCurrentPosition(showPosition);
+   }
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -19,9 +22,9 @@ function getLocation() {
 }
  
 function showPosition(position) {
-    x.innerHTML = "latitude: " + position.coords.latitude +
-    " longitude: " + position.coords.longitude +
-    "<br><br>distance to reference: " + getDistance(position) + " km";
+    x.innerHTML = "date:"+ Date()  + "<br>latitude: " + position.coords.latitude +
+    "<br>longitude: " + position.coords.longitude +
+    "<br>distance to reference: " + getDistance(position) + " km";
 }
  
 function getDistance(position) {
